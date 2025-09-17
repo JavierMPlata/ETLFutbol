@@ -1,4 +1,5 @@
 from Extract.FutbolExtract import futbolExtract
+from Extract.FutolGraphics import FutbolGraphics
 from Transform.FutbolClean import futbolClean
 from Load.FutbolLoad import Loader
 from Config.Config import Config
@@ -37,6 +38,20 @@ print(cleaned_data.dtypes)
 print(f"\nValores nulos finales:")
 print(cleaned_data.isnull().sum())
 
+# Generación de gráficas
+print("\n" + "=" * 50)
+print("GENERANDO GRÁFICAS DE ANÁLISIS")
+print("=" * 50)
+
+# Crear instancia de gráficas con los datos limpios
+graphics = FutbolGraphics(cleaned_data)
+
+# Generar todas las gráficas
+graphics.generate_all_graphics()
+
 # Carga de datos
+print("\n" + "=" * 50)
+print("CARGANDO DATOS A BASE DE DATOS")
+print("=" * 50)
 loader = Loader(cleaned_data)
 loader.to_sqlite()
