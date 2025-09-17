@@ -168,6 +168,64 @@ date,home_team,away_team,home_score,away_score,tournament,country
 - **tournament**: Competición
 - **country**: País
 
+## 🌿 Metodología de Desarrollo - Git Flow
+
+Este proyecto sigue una metodología de desarrollo estructurada utilizando **Git Flow** para garantizar un código organizado y un historial de desarrollo claro.
+
+### 📂 Estructura de Ramas
+
+#### 🏠 **main**
+- **Propósito**: Rama principal de producción
+- **Contenido**: Código estable y listo para producción
+- **Estado**: Versión final integrada y funcional del proyecto
+
+#### 🔧 **development** 
+- **Propósito**: Rama de desarrollo principal
+- **Implementación**: Creación de la estructura base del proyecto
+- **Contenido**: 
+  - Arquitectura inicial de carpetas y módulos
+  - Configuración base del proyecto
+  - Estructura de clases y componentes principales
+  - Archivos de configuración (`Config.py`, `requirements.txt`)
+
+#### ⚡ **feature**
+- **Propósito**: Desarrollo de funcionalidades específicas
+- **Implementación**: Lógica de extracción y limpieza de datos
+- **Contenido**:
+  - Módulo `Extract/FutbolExtract.py` - Extracción de datos CSV
+  - Módulo `Transform/FutbolClean.py` - Limpieza y transformación
+  - Módulo `Load/FutbolLoad.py` - Carga a SQLite y CSV
+  - Validaciones y procesamiento de datos
+  - Pipeline ETL completo
+
+#### 🚀 **release**
+- **Propósito**: Preparación de versiones y funcionalidades finales
+- **Implementación**: Lógica de visualización y análisis gráfico
+- **Contenido**:
+  - Módulo `Extract/FutolGraphics.py` - Generación de gráficas
+  - Análisis estadísticos y visualizaciones
+  - Gráficas de distribución, análisis temporal y rankings
+  - Optimización y presentación de resultados
+
+### 🔄 Flujo de Desarrollo
+
+```
+main ←── release ←── development ←── feature
+  ↑         ↑           ↑            ↑
+Producción Release   Base del    Nuevas
+              ↓      Proyecto   Features
+         Gráficas      ↓           ↓
+                   Estructura   ETL Logic
+```
+
+### ✅ Ventajas de esta Metodología
+
+- **🎯 Organización**: Cada fase del desarrollo está claramente separada
+- **🔍 Trazabilidad**: Fácil seguimiento de cambios y versiones
+- **🛡️ Estabilidad**: La rama main siempre contiene código funcional
+- **🔄 Flexibilidad**: Desarrollo paralelo de diferentes funcionalidades
+- **📋 Claridad**: Historial de desarrollo fácil de entender
+
 
 ## 📊 Ejemplos de Salida
 
