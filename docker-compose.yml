@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  etl-futbol:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: etlfutbol:latest
+    container_name: etlfutbol-pipeline
+    volumes:
+      # Montar directorios para persistir datos y gráficas
+      - ./Files:/app/Files
+      - ./Graphics:/app/Graphics
+    environment:
+      - PYTHONPATH=/app
+      - MPLBACKEND=Agg
+    restart: unless-stopped
+    # Comando por defecto (puede sobrescribirse)
+    command: ["python", "main.py"]
+    
+  # Servicio alternativo para desarrollo/debug
+  etl-futbol-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: etlfutbol:latest
+    container_name: etlfutbol-dev
+    volumes:
+      - ./Files:/app/Files
+      - ./Graphics:/app/Graphics
+      - .:/app/dev  # Montar código fuente para desarrollo
+    environment:
+      - PYTHONPATH=/app
+      - MPLBACKEND=Agg
+    command: ["tail", "-f", "/dev/null"]  # Mantener contenedor activo
+    profiles:
+      - dev
